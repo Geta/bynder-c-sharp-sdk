@@ -1,4 +1,4 @@
-﻿// Copyright (c) Bynder. All rights reserved.
+// Copyright (c) Bynder. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
@@ -149,6 +149,45 @@ namespace Bynder.Api.Impl
             {
                 Uri = $"/api/v4/media/{query.MediaId}/",
                 HTTPMethod = HttpMethod.Post,
+                Query = query,
+                DeserializeResponse = false
+            };
+
+            return _requestSender.SendRequestAsync(request);
+        }
+
+        public Task<Usage> CreateUsageAsync(UsageCreateQuery query)
+        {
+            var request = new Request<Usage>
+            {
+                Uri = $"/api/v4/media/usage/",
+                HTTPMethod = HttpMethod.Post,
+                Query = query,
+                DeserializeResponse = false
+            };
+
+            return _requestSender.SendRequestAsync(request);
+        }
+
+        public Task<Usage> GetUsageAsync(UsageQuery query)
+        {
+            var request = new Request<Usage>
+            {
+                Uri = $"/api/v4/media/usage/",
+                HTTPMethod = HttpMethod.Get,
+                Query = query,
+                DeserializeResponse = false
+            };
+
+            return _requestSender.SendRequestAsync(request);
+        }
+
+        public Task DeleteUsageAsync(UsageDeleteQuery query)
+        {
+            var request = new Request<string>
+            {
+                Uri = $"/api/v4/media/usage/",
+                HTTPMethod = HttpMethod.Delete,
                 Query = query,
                 DeserializeResponse = false
             };
