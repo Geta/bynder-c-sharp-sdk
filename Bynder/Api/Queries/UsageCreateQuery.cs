@@ -11,6 +11,7 @@ namespace Bynder.Api.Queries
         {
             IntegrationId = integrationId;
             AssetId = assetId;
+            Timestamp = DateTime.UtcNow;
         }
 
         [APIField("integration_id")]
