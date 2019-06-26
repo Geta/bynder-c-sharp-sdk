@@ -1,14 +1,14 @@
 // Copyright (c) Bynder. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Bynder.Api.Impl.Oauth;
 using Bynder.Api.Impl.Upload;
 using Bynder.Api.Queries;
 using Bynder.Models;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Bynder.Api.Impl
 {
@@ -156,27 +156,27 @@ namespace Bynder.Api.Impl
             return _requestSender.SendRequestAsync(request);
         }
 
-        public Task<Usage> CreateUsageAsync(UsageCreateQuery query)
+        public Task<Usage[]> CreateUsageAsync(UsageCreateQuery query)
         {
-            var request = new Request<Usage>
+            var request = new Request<Usage[]>
             {
-                Uri = $"/api/v4/media/usage/",
+                Uri = $"/api/media/usage/",
                 HTTPMethod = HttpMethod.Post,
                 Query = query,
-                DeserializeResponse = false
+                DeserializeResponse = true
             };
 
             return _requestSender.SendRequestAsync(request);
         }
 
-        public Task<Usage> GetUsageAsync(UsageQuery query)
+        public Task<Usage[]> GetUsageAsync(UsageQuery query)
         {
-            var request = new Request<Usage>
+            var request = new Request<Usage[]>
             {
-                Uri = $"/api/v4/media/usage/",
+                Uri = $"/api/media/usage/",
                 HTTPMethod = HttpMethod.Get,
                 Query = query,
-                DeserializeResponse = false
+                DeserializeResponse = true
             };
 
             return _requestSender.SendRequestAsync(request);
@@ -186,7 +186,7 @@ namespace Bynder.Api.Impl
         {
             var request = new Request<string>
             {
-                Uri = $"/api/v4/media/usage/",
+                Uri = $"/api/media/usage/",
                 HTTPMethod = HttpMethod.Delete,
                 Query = query,
                 DeserializeResponse = false

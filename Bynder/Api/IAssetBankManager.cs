@@ -1,11 +1,11 @@
 // Copyright (c) Bynder. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using Bynder.Api.Queries;
+using Bynder.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Bynder.Api.Queries;
-using Bynder.Models;
 
 namespace Bynder.Api
 {
@@ -72,8 +72,8 @@ namespace Bynder.Api
         /// <exception cref="HttpRequestException">Can be thrown when requests to server can't be completed or HTTP code returned by server is an error</exception>
         Task ModifyMediaAsync(ModifyMediaQuery query);
 
-        Task<Usage> CreateUsageAsync(UsageCreateQuery query);
-        Task<Usage> GetUsageAsync(UsageQuery query);
+        Task<Usage[]> CreateUsageAsync(UsageCreateQuery query);
+        Task<Usage[]> GetUsageAsync(UsageQuery query);
         Task DeleteUsageAsync(UsageDeleteQuery query);
     }
 }

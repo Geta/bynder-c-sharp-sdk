@@ -1,6 +1,8 @@
-﻿// Copyright (c) Bynder. All rights reserved.
+// Copyright (c) Bynder. All rights reserved.
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using Bynder.Api.Queries;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Specialized;
 using System.Linq;
@@ -11,8 +13,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
-using Bynder.Api.Queries;
-using Newtonsoft.Json;
 
 namespace Bynder.Api.Impl.Oauth
 {
@@ -29,7 +29,7 @@ namespace Bynder.Api.Impl.Oauth
         /// <summary>
         /// Credentials used to generate oauth header
         /// </summary>
-        private Credentials _credentials;
+        private readonly Credentials _credentials;
 
         /// <summary>
         /// Query decoder to get parameters from query objects
@@ -50,7 +50,10 @@ namespace Bynder.Api.Impl.Oauth
         {
             _credentials = credentials;
             _baseUrl = baseUrl;
-            _httpClient = new HttpClient(new OAuthMessageHandler(credentials, new HttpClientHandler()));
+            _httpClient = new HttpClient(new OAuthMessageHandler(credentials, new HttpClientHandler()
+            {
+                Proxy = new WebProxy("localhost", 8888)
+            }));
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Tls12;
         }
