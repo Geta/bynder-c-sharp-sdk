@@ -20,6 +20,6 @@ namespace Bynder.Api.Queries
         public string AssetId { get; }
 
         [APIField("uri")]
-        public Uri Uri { get; set; }
+        public string Uri { get; set; }
     }
 }
